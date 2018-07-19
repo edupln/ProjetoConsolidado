@@ -1,3 +1,3 @@
 # ProjetoConsolidado
 
-Repositório GIT para consolidação do projeto
+Repositório GIT para consolidação do projeto.
