@@ -25,13 +25,13 @@ public class EnemyStats : MonoBehaviour {
 	{
 		if(!inCollision){
 			attackCounter=0f;
+			damageToFloatingText = damage-defense;
 			if(FloatingTextPrefab && currentHP > 0){//so se houver o GameObject FloatingTextPrefab e hp maior que 0
 				ShowFloatingText();
 			}
 			inCollision=true;
 			currentHP -= (damage-defense);
 			//animatorClip = enemyAnimator.GetCurrentAnimatorClipInfo(0);//clipe em execuçao no layer zero
-			damageToFloatingText = damage-defense;
 			if (currentHP <= 0){
 				if(occursOnlyOnce>0){
 					Instantiate(damageParticle, transform.position, transform.rotation);

@@ -29,7 +29,7 @@ public class DamageOnEnemy : MonoBehaviour
 	void OnTriggerEnter(Collider collider)
 	{
 		if(inAttack){
-			Debug.Log ("DamageOnEnemy Triggers");
+			//Debug.Log ("DamageOnEnemy Triggers");
 			GameObject objectCollided = collider.gameObject;  // Get a reference to the object hit
 			EnemyStats damageableComponent = objectCollided.GetComponent<EnemyStats>();		
 			if (damageableComponent){
