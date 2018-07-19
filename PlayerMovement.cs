@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour{
 			moveDir = Vector3.ClampMagnitude (moveDir, 1);
 
 			if(PlayerCombat.attacking){
-				speed = 0.5f;
+				speed = 0f;//aqui era 0.5f
 			}
 			else{
 				speed = originalSpeed;
