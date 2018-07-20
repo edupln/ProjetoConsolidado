@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour{
 	}
 
 	void Update(){
-		//Transform t = this.transform;
+		//Transform t = this.transform; //????
 		//so realizar as açoes se estiver no chao
 		if(controller.isGrounded){
 			//chama animacao parado na terra
