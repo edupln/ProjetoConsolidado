@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
 
-	public static int level=1, nextLevel, xp=0, xpToLevel, xpDiff, life, totalLife, magic, totalMagic, attack, defense;
+	public static int level=1, nextLevel, xp=0, xpToLevel, xpDiff, life, totalLife, magic, totalMagic, attack, defense;//caso eu abra coop, preciso tirar life do static
 
 	void Start (){
 		Recalculation();		
@@ -23,13 +23,12 @@ public class PlayerStats : MonoBehaviour {
 
 		if(magic<0)
 			magic=0;
-
-		attack=5*level;
-		defense=3*level;
 	}
 
 	public void Recalculation(){
-		totalLife=25*level;
+		attack=5*level;
+		defense=5*level;
+		totalLife=100*level;
 		totalMagic=10*level;
 		life=totalLife;
 		magic=totalMagic;
@@ -46,7 +45,7 @@ public class PlayerStats : MonoBehaviour {
 	}
 
 	public void DamageReceived(int damage){
-		life-=damage;
+		life=life-(damage-defense);
 	}
 
 	public void MagicConsume(int magicConsume){
