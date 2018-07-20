@@ -1,35 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DamageOnPlayer : MonoBehaviour {
-	public int damage;
-	public bool inAttack;
+public class DamageOnPlayer : MonoBehaviour{
+	private bool canAttack;
 	private float attackCounter;
-	public float attackTime=3.0f;
-
+	public float attackTime=2.0f;
+	public int weaponStrength;//dano da arma
 	public Animator enemyAnimator;
-
-	void Start () {
-		inAttack = false;		
+	
+	void Start (){
+		weaponStrength = 5;
 	}
-
-	void Update () {
-		if(inAttack==true){
+	
+	void Update (){	
+		if(!canAttack){
 			attackCounter += Time.deltaTime;
 			if(attackCounter>attackTime){
 				attackCounter=0.0f;
-				inAttack=false;
+				canAttack=true;
 			}
 		}
 	}
-
-	void OnTriggerStay(Collider other){
-		if(other.gameObject.tag == "Player" && inAttack == false){
-			inAttack=true;
+	
+	void OnTriggerStay(Collider collider){
+		if(collider.gameObject.tag == "Player" && canAttack){		
+			canAttack=false;
 			enemyAnimator.SetTrigger("Attack");
-			//damage=gameObject.GetComponent<EnemyStats>().attack-PlayerStats.defense;
-			other.gameObject.GetComponent<PlayerStats>().DamageReceived (damage);
+			GameObject objectCollided = collider.gameObject;  // Get a reference to the object hit
+			PlayerStats damageableComponent = objectCollided.GetComponent<PlayerStats>();		
+			if (damageableComponent){
+				damageableComponent.DamageReceived(weaponStrength+EnemyStats.enemyAttack);//era DoDamage
+			}
 		}
 	}
 }

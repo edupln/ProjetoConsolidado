@@ -8,11 +8,11 @@ public class DamageOnEnemy : MonoBehaviour
 	private bool inAttack;
 	public GameObject weapon;
 	private float attackCounter;
-	public int swordStrength;//dano da arma
+	public int weaponStrength;//dano da arma
 
 	void Start () {
 		weapon.GetComponent<MeleeWeaponTrail>().Emit = false;
-		swordStrength = 10;
+		weaponStrength = 10;
 	}
 
 	void Update (){	
@@ -26,14 +26,14 @@ public class DamageOnEnemy : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerStay(Collider collider)
 	{
 		if(inAttack){
-			Debug.Log ("DamageOnEnemy Triggers");
+			//Debug.Log ("DamageOnEnemy Triggers");
 			GameObject objectCollided = collider.gameObject;  // Get a reference to the object hit
 			EnemyStats damageableComponent = objectCollided.GetComponent<EnemyStats>();		
 			if (damageableComponent){
-				damageableComponent.doDamage(swordStrength+PlayerStats.attack);
+				damageableComponent.DamageReceived(weaponStrength+PlayerStats.attack);//era DoDamage
 			}
 		}
 	}

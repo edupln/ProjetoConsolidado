@@ -37,9 +37,7 @@ public class EnemyMovement : MonoBehaviour {
 
 		currentDistance = Vector3.Distance(transform.position,target.transform.position);
 
-		transform.LookAt(target.transform.position);//olhar para o target
-
-		if(currentDistance > agroRange && enemyStats.currentHP>0){
+		if(currentDistance > agroRange && enemyStats.enemyLife > 0){// && enemyStats.enemyLife>0
 			if(isMoving){
 				moveCounter-=Time.deltaTime;
 				rb.velocity=moveDirection;
@@ -54,7 +52,7 @@ public class EnemyMovement : MonoBehaviour {
 				waitCounter-=Time.deltaTime;
 				rb.velocity=Vector3.zero;
 
-				if(waitCounter<0.0f  && enemyStats.currentHP>0){
+				if(waitCounter<0.0f){//  && enemyStats.enemyLife>0
 					isMoving=true;
 					enemyAnimator.SetBool("Move",true);
 					RandomMoveCounter();
@@ -64,11 +62,13 @@ public class EnemyMovement : MonoBehaviour {
 			}
 		}
 		//distancia dentro do agro range e mantendo distancia do player
-		if(currentDistance <= agroRange && currentDistance >= keepDistance && enemyStats.currentHP>0){
+		if(currentDistance <= agroRange && currentDistance >= keepDistance && enemyStats.enemyLife >0){// && enemyStats.enemyLife>0
+
+			transform.LookAt(target.transform.position);//olhar para o target
+			//transform.forward = dir;//olhar p o target (player)
 
 			dir=target.transform.position-transform.position;
 			dir.Normalize();
-			transform.forward = dir;//olhar p o target (player)
 
 			enemyAnimator.SetBool("Move",true);
 			transform.position+=dir*moveTime*Time.deltaTime;
