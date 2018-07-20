@@ -20,3 +20,4 @@ public class EnemyHud : MonoBehaviour {
 //		enemyLifeSlider.value=enemyObject.gameObject.GetComponent<EnemyStats>().currentHP;
 	}
 }
+//remover
